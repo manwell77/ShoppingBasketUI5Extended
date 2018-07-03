@@ -1,0 +1,36 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.eni.extbasket.zeniextbasket",
+        "description": "Shopping Basket Approval",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#zeniextbasket-Display",
+        "navigationComponentName": "com.eni.extbasket",
+        "intentSemanticObject": "zeniextbasket",
+        "intentAction": "Display",
+        "html5ApplicationName": "zeniextbasket",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "f4fe3ede-dab8-4bee-8cd5-03f6a33c4fa3-1529062575835"
+        ],
+        "contentPackages": [
+            "4c3f9bd8-a27c-48ba-8afc-94bcbc24f8fe-1529063030343"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "DynamicTile",
+        "title": "Shopping Basket",
+        "subtitle": "Approval Waiting",
+        "searchKeywords": "Shopping Basket,Approval Waiting",
+        "displayIconUrl": "sap-icon://cart",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "/sap/fiori/zeniextbasket/SAP_Gateway/odata/SAP/ZENIEXTSB_SRV;v=1/BasketSet/$count",
+        "refreshInterval": "10",
+        "displayNumberUnit": "Basket"
+    }
+}

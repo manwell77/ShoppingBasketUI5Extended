@@ -1,0 +1,37 @@
+<mvc:View id="masterView" controllerName="com.eni.extbasket.controller.master" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Page id="master" title="Basket(s)">
+		<subHeader id="masterSubHeader">
+			<Bar id="searchBar">
+				<contentMiddle>
+					<SearchField id="searchField" search="onLiveSearch" width="100%" showRefreshButton="{= ${device>/support/touch} ? false : true }"
+						liveChange="onLiveSearch"/>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+		<content>
+			<List id="masterList" class="sapUiResponsiveMargin" width="auto" items="{path:'sc>/BasketSet'}" growing="true" growingThreshold="10"
+				growingScrollToLoad="true" busyIndicatorDelay="100" enableBusyIndicator="true">
+				<items>
+					<ObjectListItem title="{sc>Number}" type="{= ${device>/system/phone} ? 'Navigation' : 'Active' }" press="onScPressed"
+						number="{ parts:[{path:'sc>Value'},{path:'sc>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+						numberUnit="{sc>CurrencyISO}">
+						<firstStatus>
+							<ObjectStatus text="{ path: 'sc>PostingDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+						</firstStatus>
+						<attributes>
+							<ObjectAttribute text="{sc>FlowShort}"/>
+							<ObjectAttribute text="{sc>PostedByName}"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="butFilter" icon="sap-icon://filter" press="onFilter"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

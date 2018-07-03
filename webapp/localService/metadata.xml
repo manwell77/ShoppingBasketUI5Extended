@@ -1,0 +1,181 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZENIEXTSB_SRV" sap:schema-version="1" xml:lang="it">
+			<EntityType Name="Basket" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WorkitemID"/>
+				</Key>
+				<Property Name="TopFlowID" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kennung"/>
+				<Property Name="WorkitemID" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kennung"/>
+				<Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="GuidOut" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="CurrencyMono" Type="Edm.Boolean" Nullable="false" sap:creatable="false" sap:updatable="false" sap:label="Checkbox"/>
+				<Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:label="Transaction No."/>
+				<Property Name="StatusName" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false" sap:updatable="false"
+					sap:label="Kurzbeschreibung"/>
+				<Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Beschreibung"/>
+				<Property Name="PostedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false" sap:label="Benutzer"/>
+				<Property Name="SupplierMono" Type="Edm.Boolean" Nullable="false" sap:creatable="false" sap:updatable="false" sap:label="Checkbox"/>
+				<Property Name="PostedByName" Type="Edm.String" Nullable="false" MaxLength="80" sap:creatable="false" sap:updatable="false"
+					sap:label="Vollst.Name"/>
+				<Property Name="SupplierMonoName" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false"
+					sap:label="Name 1"/>
+				<Property Name="PostingDate" Type="Edm.DateTime" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false"
+					sap:label="Buchungsdatum"/>
+				<Property Name="PostingDateOut" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:label="string"/>
+				<Property Name="Flow" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:label="Vorgangsart"/>
+				<Property Name="FlowShort" Type="Edm.String" Nullable="false" MaxLength="20" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung"/>
+				<Property Name="FlowLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung"/>
+				<Property Name="Value" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false" sap:unit="Currency" sap:label="Nettowert"/>
+				<Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false" sap:updatable="false"
+					sap:semantics="currency-code" sap:label="Währung"/>
+				<Property Name="CurrencyISO" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:label="Iso-Code"/>
+				<Property Name="CurrencyShort" Type="Edm.String" Nullable="false" MaxLength="15" sap:creatable="false" sap:updatable="false"
+					sap:label="Kurztext"/>
+				<Property Name="CurrencyLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false"
+					sap:label="Langtext"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:label="3-Byte field"/>
+				<Property Name="Items" Type="Edm.Int32" Nullable="false" sap:creatable="false" sap:updatable="false" sap:filterable="false" sap:label="Zahl"/>
+				<Property Name="Suppliers" Type="Edm.Int32" Nullable="false" sap:creatable="false" sap:updatable="false" sap:filterable="false"
+					sap:label="Zahl"/>
+				<Property Name="SearchKey" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:label="string"/>
+				<NavigationProperty Name="BasketItemSet" Relationship="ZENIEXTSB_SRV.BasketItems" FromRole="FromRole_BasketItems"
+					ToRole="ToRole_BasketItems"/>
+			</EntityType>
+			<EntityType Name="BasketItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WorkitemID"/>
+					<PropertyRef Name="HeaderGuid"/>
+				</Key>
+				<Property Name="GuidOut" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="WorkitemID" Type="Edm.String" Nullable="false" MaxLength="12" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kennung"/>
+				<Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="HeaderGuidOut" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="HeaderGuid" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 22"/>
+				<Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:filterable="false"
+					sap:label="Text"/>
+				<Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="54" sap:creatable="false" sap:updatable="false" sap:label="Produkt"/>
+				<Property Name="ProductName" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false"
+					sap:label="Kurztext"/>
+				<Property Name="Category" Type="Edm.Guid" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="GUID 16"/>
+				<Property Name="CategoryID" Type="Edm.String" Nullable="false" MaxLength="20" sap:creatable="false" sap:updatable="false"
+					sap:label="Produktkateg."/>
+				<Property Name="CategoryName" Type="Edm.String" Nullable="false" MaxLength="80" sap:creatable="false" sap:updatable="false"
+					sap:label="Kategoriebezeichnung"/>
+				<Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false" sap:unit="Currency" sap:label="Nettopreis"/>
+				<Property Name="PriceUnit" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Preiseinheit"/>
+				<Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false" sap:unit="Unit" sap:label="Menge"/>
+				<Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:semantics="unit-of-measure" sap:label="Einheit"/>
+				<Property Name="UnitISO" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="ISO-Code"/>
+				<Property Name="UnitCommercial" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kaufmännisch"/>
+				<Property Name="UnitTechnical" Type="Edm.String" Nullable="false" MaxLength="6" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Technisch"/>
+				<Property Name="UnitShort" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Maßeinh.Text"/>
+				<Property Name="UnitLong" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Maßeinh.Text l"/>
+				<Property Name="Value" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false" sap:unit="Currency" sap:label="Nettowert"/>
+				<Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:semantics="currency-code" sap:label="Währung"/>
+				<Property Name="CurrencyISO" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Iso-Code"/>
+				<Property Name="CurrencyShort" Type="Edm.String" Nullable="false" MaxLength="15" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kurztext"/>
+				<Property Name="CurrencyLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Langtext"/>
+				<Property Name="Supplier" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:label="Vendor"/>
+				<Property Name="SupplierName" Type="Edm.String" Nullable="false" MaxLength="200" sap:creatable="false" sap:updatable="false"
+					sap:label="Text"/>
+				<Property Name="AccountMono" Type="Edm.Boolean" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Checkbox"/>
+				<Property Name="Account" Type="Edm.String" Nullable="false" MaxLength="5" sap:creatable="false" sap:updatable="false" sap:filterable="false"
+					sap:label="KontierTyp"/>
+				<Property Name="AccountName" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false" sap:label="Kurzbeschreibung"/>
+				<Property Name="AccountValue" Type="Edm.String" Nullable="false" MaxLength="20" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung"/>
+				<Property Name="AccountSplit" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Verteilungskennzeich"/>
+				<Property Name="AccountSplitName" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Kurzbeschreibung"/>
+				<Property Name="AccountSplitValue" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DeliveryDate" Type="Edm.DateTime" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false"
+					sap:label="aktuelles Datum"/>
+				<Property Name="DeliveryDateOut" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Delivery Date Out"/>
+				<Property Name="Address" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="string"/>
+				<Property Name="Co" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="c/o"/>
+				<Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Straße"/>
+				<Property Name="HouseNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Hausnummer"/>
+				<Property Name="City" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:label="Ort"/>
+				<Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:label="Region"/>
+				<Property Name="RegionName" Type="Edm.String" Nullable="false" MaxLength="20" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung"/>
+				<Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:label="Land"/>
+				<Property Name="CountryShort" Type="Edm.String" Nullable="false" MaxLength="15" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung"/>
+				<Property Name="CountryLong" Type="Edm.String" Nullable="false" MaxLength="50" sap:creatable="false" sap:updatable="false"
+					sap:label="Bezeichnung lang"/>
+				<Property Name="Zip" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:label="Postleitzahl"/>
+				<NavigationProperty Name="Basket" Relationship="ZENIEXTSB_SRV.BasketItems" FromRole="ToRole_BasketItems" ToRole="FromRole_BasketItems"/>
+			</EntityType>
+			<Association Name="BasketItems" sap:content-version="1">
+				<End Type="ZENIEXTSB_SRV.Basket" Multiplicity="1" Role="FromRole_BasketItems"/>
+				<End Type="ZENIEXTSB_SRV.BasketItem" Multiplicity="*" Role="ToRole_BasketItems"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BasketItems">
+						<PropertyRef Name="WorkitemID"/>
+					</Principal>
+					<Dependent Role="ToRole_BasketItems">
+						<PropertyRef Name="WorkitemID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZENIEXTSB_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="BasketSet" EntityType="ZENIEXTSB_SRV.Basket" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:searchable="true"/>
+				<EntitySet Name="BasketItemSet" EntityType="ZENIEXTSB_SRV.BasketItem" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:searchable="true"/>
+				<AssociationSet Name="BasketItemsSet" Association="ZENIEXTSB_SRV.BasketItems" deletable="false" creatable="false" updatable="false">
+					<End EntitySet="BasketSet" Role="FromRole_BasketItems"/>
+					<End EntitySet="BasketItemSet" Role="ToRole_BasketItems"/>
+				</AssociationSet>
+			</EntityContainer>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://gwaas-p424071trial.hanatrial.ondemand.com:443/odata/SAP/ZENIEXTSB_SRV/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://gwaas-p424071trial.hanatrial.ondemand.com:443/odata/SAP/ZENIEXTSB_SRV/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

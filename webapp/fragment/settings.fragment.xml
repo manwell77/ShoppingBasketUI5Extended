@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog title="Filters" confirm="onConfirm">                 	
+        <filterItems>
+            <ViewSettingsFilterItem text="PostedByName" key="PostedByName" items="{path:'sc>/UserSet',sorter:[{path:'Username',descending:false}]}">
+            	<items>
+            		<ViewSettingsItem text="{sc>Username}" key="PostedBy__{sc>Userid}" />
+            	</items>
+            </ViewSettingsFilterItem>
+        </filterItems>	
+		<sortItems>
+			<ViewSettingsItem text="FlowShort" key="1" />
+			<ViewSettingsItem text="Number" key="2" />
+			<ViewSettingsItem text="PostedByName" key="3" />
+			<ViewSettingsItem text="Nessun elemento" key="4" selected="true" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="FlowShort" key="1" />
+			<ViewSettingsItem text="PostedbyName" key="2" />
+		</groupItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

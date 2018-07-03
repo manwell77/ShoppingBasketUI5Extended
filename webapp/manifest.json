@@ -1,0 +1,142 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "com.eni.extbasket",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"scRemote": {
+				"uri": "/SAP_Gateway/odata/SAP/ZENIEXTSB_SRV;v=1/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "com.eni.extbasket.view.app",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.eni.extbasket.i18n.i18n"
+				}
+			},
+			"sc": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"dataSource": "scRemote",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"refreshAfterChange": true,
+					"defaultCountMode": "",
+					"preload": true
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.eni.extbasket.view",
+				"controlAggregation": "detailPages",
+				"controlId": "splitApp",
+				"transition": "slide",
+				"greedy": "false",
+				"bypassed": {
+					"target": "notfound"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "app",
+					"target": [
+						"notfound",
+						"detail",
+						"master"
+					]
+				},
+				{
+					"pattern": "BasketSet/{WorkitemID}",
+					"name": "detail",
+					"target": [
+						"master",
+						"detail"
+					]
+				}
+			],
+			"targets": {
+				"master": {
+					"viewName": "master",
+					"viewLevel": 1,
+					"controlAggregation": "masterPages"
+				},
+				"detail": {
+					"viewName": "detail",
+					"viewLevel": 2,
+					"controlAggregation": "detailPages"
+				},
+				"notfound": {
+					"viewName": "notfound",
+					"viewLevel": 2,
+					"controlAggregation": "detailPages"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.2.0"
+	}
+}

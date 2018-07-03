@@ -1,0 +1,45 @@
+<mvc:View id="detailView" controllerName="com.eni.extbasket.controller.detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" displayBlock="true">
+	<Page id="detailPage" showNavButton="{= ${device>/system/desktop} ? false : true }" navButtonPress="onNavigationBack" title="Basket Detail">
+		<content>
+			<ObjectHeader id="scHeader" responsive="true" fullScreenOptimized="true" binding="{sc}" title="{sc>Number}" icon="sap-icon://cart"
+				intro="{sc>Text}" numberState="None"
+				number="{ parts:[{path:'sc>Value'},{path:'sc>CurrencyISO'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+				numberUnit="{sc>CurrencyISO}" backgroundDesign="Translucent">
+				<attributes>
+					<ObjectAttribute title="{i18n>From}" text="{sc>PostedByName}"/>
+					<ObjectAttribute title="{i18n>On}" text="{ path: 'sc>PostingDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' } }"/>
+					<ObjectAttribute title="{i18n>Flow}" text="{sc>FlowShort}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus title="{i18n>Status}" text="{sc>StatusName}" state="Warning"/>
+				</statuses>
+			</ObjectHeader>
+			<List id="scItemList" width="auto" growing="true" growingThreshold="10" growingScrollToLoad="true" busyIndicatorDelay="100"
+				enableBusyIndicator="true"
+				items="{ path:'sc>BasketItemSet', sorter: { path:'CategoryName', descending: false, group: true } }">
+				<items>
+					<ObjectListItem title="{sc>ProductName}" intro="{sc>CategoryName}" type="Inactive"
+						number="{ parts:[{path:'sc>Value'},{path:'sc>Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+						numberUnit="{sc>CurrencyISO}">
+						<firstStatus>
+							<ObjectStatus title="{i18n>Quantity}" text="{sc>Quantity} {sc>UnitISO}"/>
+						</firstStatus>
+						<attributes>
+							<ObjectAttribute title="{i18n>Price}" text="{sc>Price} {sc>CurrencyISO} {i18n>For} {sc>PriceUnit} {sc>UnitISO}"/>
+							<ObjectAttribute title="{i18n>Accounting}" text="{sc>AccountName} {sc>AccountValue}"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onReject" type="Reject" text="Reject"/>
+					<Button icon="sap-icon://accept" press="onApprove" type="Accept" text="Approve"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
